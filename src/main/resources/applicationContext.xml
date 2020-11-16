@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="io" class="com.tom.studentregitser.ui.UserIOConsoleImpl" />
+
+    <bean id="dao" class="com.tom.studentregister.dao.DaoFileImpl" />
+
+    <bean id="view" class="com.tom.studentregister.ui.View">
+        <constructor-arg ref="io" />
+    </bean>
+
+    <bean id="service" class="com.tom.studentregister.service.ServiceLayerImpl">
+        <constructor-arg ref="dao" />
+    </bean>
+
+    <bean id="controller" class="com.tom.studentregister.controller.Controller">
+        <constructor-arg ref="service" />
+        <constructor-arg ref="view" />
+    </bean>
+
+</beans>
